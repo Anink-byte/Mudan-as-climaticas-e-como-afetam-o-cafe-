@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+     <a href="index.html" class="btn-voltar-topo">Voltar</a>
+      <link rel="stylesheet" href="jogo.css">
+  <meta charset="UTF-8">
+  <title>Jogo do Grão de Café</title>
+  <link rel="icon" href="https://img.icons8.com/?size=100&id=7hxTNGKKQMYI&format=png&color=000000" type="image/png">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #f6e2d3, #cfa16f);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: #6f4e37;
+      font-size: 3em;
+      text-shadow: 2px 2px #f3d8b1;
+      margin-bottom: 30px;
+    }
+
+    #inicioTela, #jogoContainer {
+      text-align: center;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #6f4e37;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 10px;
+    }
+
+    button:hover {
+      background-color: #52382b;
+    }
+
+    #scoreBoard {
+      font-size: 18px;
+      color: #4b2e1e;
+      margin-bottom: 10px;
+    }
+
+    #gameArea {
+      width: 100%;
+      height: 500px;
+      border: 3px solid #6f4e37;
+      border-radius: 15px;
+      background-color: #fff8f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grao {
+      width: 40px;
+      height: 40px;
+      background-image: url('https://img.icons8.com/?size=100&id=7hxTNGKKQMYI&format=png&color=000000');
+      background-size: cover;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    #msgFinal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,248,240,0.95);
+      padding: 20px 30px;
+      border: 2px solid #6f4e37;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #6f4e37;
+      z-index: 10;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- TELA INICIAL -->
+  <div id="inicioTela">
+    <h1>Coletor de Grãos de Café </h1>
+    <p>Seja bem-vindo ao jogo! Clique em "Começar Jogo" e tente coletar o máximo de grãos de café antes que o tempo acabe.</p>
+    <button id="startBtn">Começar Jogo</button>
+  </div>
+
+  <!-- TELA DO JOGO -->
+  <div id="jogoContainer" style="display:none;">
+    <div id="scoreBoard">
+      Pontuação: <span id="score">0</span> | Tempo: <span id="timer">30</span>s
+    </div>
+   
+    <div id="gameArea"></div>
+  </div>
+
+  <script>
+    const inicioTela = document.getElementById('inicioTela');
+    const startBtn = document.getElementById('startBtn');
+    const jogoContainer = document.getElementById('jogoContainer');
+    const gameArea = document.getElementById('gameArea');
+    const scoreEl = document.getElementById('score');
+    const timerEl = document.getElementById('timer');
+    const voltarBtn = document.getElementById('voltarBtn');
+
+    let score = 0;
+    let timeLeft = 30;
+    let gameInterval, timerInterval;
+
+    function randomPosition() {
+      const x = Math.random() * (gameArea.clientWidth - 40);
+      const y = Math.random() * (gameArea.clientHeight - 40);
+      return { x, y };
+    }
+
+    function createGrao() {
+      const grao = document.createElement('div');
+      grao.classList.add('grao');
+      const { x, y } = randomPosition();
+      grao.style.left = `${x}px`;
+      grao.style.top = `${y}px`;
+
+      grao.addEventListener('click', () => {
+        score++;
+        scoreEl.textContent = score;
+        grao.remove();
+      });
+
+      gameArea.appendChild(grao);
+
+      setTimeout(() => {
+        if (grao.parentElement) grao.remove();
+      }, 2000);
+    }
+
+    function startGame() {
+      score = 0;
+      timeLeft = 30;
+      scoreEl.textContent = score;
+      timerEl.textContent = timeLeft;
+      gameArea.innerHTML = '';
+
+      gameInterval = setInterval(createGrao, 700);
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 1000);
+    }
+
+    function endGame() {
+      clearInterval(gameInterval);
+      clearInterval(timerInterval);
+
+      gameArea.innerHTML = `<div id="msgFinal">
+        ⏰ Tempo esgotado! Sua pontuação: ${score}
+      </div>`;
+
+      setTimeout(startGame, 2000);
+    }
+
+    startBtn.addEventListener('click', () => {
+      inicioTela.style.display = 'none';
+      jogoContainer.style.display = 'block';
+      startGame();
+    });
+
+    // Botão Voltar para o site (redireciona para index.html, altere se necessário)
+    voltarBtn.addEventListener('click', () => {
+      window.location.href = "index.html"; // Substitua pelo endereço da sua página inicial
+    });
+  </script>
+
+</body>
+</html>

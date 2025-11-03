@@ -1,0 +1,288 @@
+/* ===================== Global ===================== */
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: linear-gradient(#22493e, #0e352a);
+    font-family: "Playfair Display", serif;
+    color: aliceblue;
+}
+
+/* ===================== Menu ===================== */
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    z-index: 5;
+    background: linear-gradient(#22493e, #0e352a);
+}
+
+.menu .logo {
+    position: absolute;
+    left: 20px;  
+    display: flex;
+    align-items: center;
+    font-family: "Eczar", serif;
+    font-size: 18px;
+    color: white;
+}
+
+.menu .logo img {
+    height: 30px;
+    margin-right: 5px;
+}
+
+.links {
+    padding: 15px 10px;
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+}
+
+.menu .links a {
+    color: white;
+    transition: color 0.3s, font-size 0.3s;
+}
+
+.menu .links a:hover {
+    color: #4CAF50;
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+/* ===================== Welcome ===================== */
+#welcome {
+    background-image: url(https://i.postimg.cc/RZ2H47J0/coffee-blur.jpg); 
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column;
+}
+
+h1, h2 {
+    color: aliceblue;
+    margin: 0;
+}
+
+#name {
+    font-size: 60px; 
+    font-family: "Cinzel Decorative", serif;
+    text-shadow: 2px 2px 6px #000;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 100;
+    font-family: "Crimson Text", serif;
+    margin-top: 20px;
+}
+
+/* ===================== Linhas decorativas ===================== */
+.line, .line1 {
+    height: 5px;
+    background-color: #a0d996;
+    width: 80px;
+    margin: 8px auto 30px auto;
+    border-radius: 2px;
+}
+
+/* ===================== Seções ===================== */
+section {
+    padding: 50px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p {
+    font-size: 23px;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+/* ===================== Caixas de Destaque ===================== */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.impacto-box, .caixa {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px 20px;
+    width: 320px;
+    text-align: left;
+    color: aliceblue;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.impacto-box::before, .caixa::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 15px;
+    border: 2px solid #151814;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.impacto-box:hover::before, .caixa:hover::before {
+    opacity: 1;
+}
+
+.impacto-box:hover, .caixa:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    background: rgba(34, 73, 62, 0.8); /* verde escuro translúcido */
+}
+
+.impacto-box h2, .caixa h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #a0d996;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.impacto-box p, .caixa p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: aliceblue; /* mantém o texto visível */
+}
+
+/* Hover apenas aumenta o título e mantém o texto legível */
+.impacto-box:hover h2, .caixa:hover h2 {
+    transform: scale(1.1);
+    color:#a0d996; /* título destacado, mas legível */
+}
+
+.impacto-box:hover p, .caixa:hover p {
+    color: aliceblue; /* mantém o parágrafo legível */
+}
+
+/* ===================== Imagens ===================== */
+.img-hover {
+    display: flex;            
+    gap: 10px;                
+    justify-content: center;  
+    margin-bottom: 20px;
+}
+  
+.img-hover img {
+    width: calc((100% - 20px) / 3); 
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+  
+.img-hover img:hover {
+    transform: scale(1.1) translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* ===================== Iframes ===================== */
+iframe {
+    border: none;
+    border-radius: 8px;
+}
+
+/* ===================== Footer ===================== */
+footer {
+    font-size: 19px;
+    color: aliceblue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 20px;
+}
+
+/* ===================== Responsividade ===================== */
+@media (max-width: 700px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .impacto-box, .caixa {
+        width: 90%;
+    }
+
+    .img-hover img {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+}
+
+#temperatura-interativa {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.temp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 320px;
+    background: rgba(255,255,255,0.05);
+    padding: 25px 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+#nomeCafe {
+    width: 90%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+}
+
+#buscarCafe {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#buscarCafe:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#resultadoCafe {
+    font-size: 1.1rem;
+    color: #a0d996;
+    font-weight: bold;
+    text-align: center;
+}

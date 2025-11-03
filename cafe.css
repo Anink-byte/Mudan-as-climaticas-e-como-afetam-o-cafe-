@@ -1,0 +1,77 @@
+/* Layout lado a lado */
+.temp-flex-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+/* Buscador */
+.temp-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 250px;
+}
+
+/* Resultado do café */
+#resultadoCafe {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0e6db;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    font-size: 16px;
+    color: #333;
+    max-height: 200px; 
+    overflow-y: auto;  
+}
+
+
+.tabela-wrapper {
+    max-height: 220px; 
+    overflow-y: auto;  
+}
+
+/* Tabela de cafés */
+.tabela-cafes {
+    border-collapse: collapse;
+    width: 200px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.tabela-cafes th, .tabela-cafes td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #6f4e37;
+}
+
+.tabela-cafes th {
+    background-color: #6f4e37;
+    color: #fff;
+}
+
+.tabela-cafes td {
+    background-color: #f0e6db;
+    color: #333;
+}
+
+.tabela-cafes tr:hover td {
+    background-color: #e0d4c2;
+}
+
+/* Botão */
+#buscarCafe {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #6f4e37;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+#buscarCafe:hover {
+    background-color: #523926;
+}
